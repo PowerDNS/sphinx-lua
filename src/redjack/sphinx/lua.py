@@ -24,8 +24,8 @@ from sphinx.util.docfields import Field, GroupedField, TypedField
 
 # REs for Lua signatures
 lua_sig_re = re.compile(
-    r'''^ ([\w.]*\.)?            # class name(s)
-          (\w+)  \s*             # thing name
+    r'''^ ([\w.]*(?: \.|:))?     # class name(s)
+          (\w+)? \s*             # thing name
           (?: \((.*)\)           # optional: arguments
            (?:\s* -> \s* (.*))?  #           return annotation
           )? $                   # and nothing more
@@ -154,6 +154,7 @@ class LuaObject(ObjectDescription):
             add_module = True
             if name_prefix:
                 classname = name_prefix.rstrip('.')
+                classname = name_prefix.rstrip('.').rstrip(':')
                 fullname = name_prefix + name
             else:
                 classname = ''
