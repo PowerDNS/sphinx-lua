@@ -226,7 +226,7 @@ class LuaObject(ObjectDescription):
         indextext = self.get_index_text(modname, name_cls)
         if indextext:
             self.indexnode['entries'].append(('single', indextext,
-                                              fullname, ''))
+                                              fullname, '', None))
 
     def before_content(self):
         # needed for automatic qualification of members (reset in subclasses)
