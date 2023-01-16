@@ -42,7 +42,15 @@ def call_git_describe(abbrev=4):
                   stdout=PIPE, stderr=PIPE)
         p.stderr.close()
         line = p.stdout.readlines()[0]
-        return line.decode("ascii").strip()
+        version = line.decode("ascii").strip()
+        split_version = version.split('-')
+        # keep the version number based on the latest tag
+        # on the branch, plus the number of commits since
+        # that tag
+        lastest_tag = split_version[0]
+        number_of_commits_since_tag = split_version[1]
+
+        return '{:}.{:}'.format(lastest_tag, number_of_commits_since_tag)
 
     except:
         return None
