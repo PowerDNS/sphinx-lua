@@ -47,10 +47,10 @@ def call_git_describe(abbrev=4):
         # keep the version number based on the latest tag
         # on the branch, plus the number of commits since
         # that tag
-        lastest_tag = split_version[0]
+        latest_tag = split_version[0]
         number_of_commits_since_tag = split_version[1]
 
-        return '{:}.{:}'.format(lastest_tag, number_of_commits_since_tag)
+        return '{:}.{:}'.format(latest_tag, number_of_commits_since_tag)
 
     except:
         return None
